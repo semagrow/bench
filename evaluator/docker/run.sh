@@ -17,16 +17,18 @@ then
   echo experimentName = "$EXPERIMENT" >> /kobe/run.prop
 fi
 
+echo template is $TEMPLATE
+
 if [ "$TEMPLATE" ]
 then
-  mkdir /tmp/orig
-  mv /queries/* /tmp/orig
+  mkdir /new_queries
+  echo querySet = /new_queries >> /kobe/run.prop
   
-  for Q in `ls /tmp/orig`
+  for Q in `ls /queries`
   do
     for T in $TEMPLATE
     do
-      sed 's/\$\#\$/'$T'/g' "/tmp/orig/"$Q > "/queries/"$Q"-"$T
+      sed 's/\$\#\$/'$T'/g' "/queries/"$Q > "/new_queries/"$Q"-"$T
     done
   done
 fi
