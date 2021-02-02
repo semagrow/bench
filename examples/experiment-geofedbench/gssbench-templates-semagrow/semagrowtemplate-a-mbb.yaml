@@ -1,0 +1,19 @@
+apiVersion: kobe.semagrow.org/v1alpha1
+kind: FederatorTemplate
+metadata:
+  name: semagrowtemplate-a-mbb
+spec:
+  containers:
+    - name: maincontainer 
+      image: semagrow/semagrow:feat-geospatial-selector
+      ports:
+      - containerPort: 8080
+  port: 8080
+  path: /SemaGrow/sparql
+  confFromFileImage: antru6/semagrow-init-c
+  inputDumpDir: /semagrow/input
+  outputDumpDir: /semagrow/output
+  confImage: nefelipk/semagrow-init-a-mbb
+  inputDir: /input
+  outputDir: /output
+  fedConfDir: /etc/default/semagrow
